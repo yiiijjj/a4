@@ -1,0 +1,7 @@
+This application provides a fictional insurance company's employees with customer and policy information. It includes customer and agent contact information, policy details, and insured assets. A CRM allows an organization to synchronize their records, propogate changes, and make information available to stakeholders.
+
+The models in this application center around the policy table. Many customers can have many policies. One agent can have many policies in their book of business. Policies can have many types, such as auto and homeowners (referred to as vehicle and building respectively in models). An asset such as a vehicle or building can only be covered by one policy at a time. Buildings can have many types such as home or commercial space. 
+
+To minimize discrepancies after updating, addresses were given their own table referenced by the address_id foreign key. VIN number conflicts are verified with the unique=True validator. A single agent is assumed responsible for an individual policy and therefore has a respective OneToMany relationship. A customers who does not bundle can have multiple policies. Additionally, multiple customers can share one or multiple policies.
+
+Most foreign keys restrict the deletion of referenced objects for safety. Agencies and agents are set to a default value in the event of a change in personnel. Customers have a cascade relationship with dependencies in the event they are deleted to remove all associated records.
